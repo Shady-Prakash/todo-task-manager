@@ -1,8 +1,6 @@
 bin/
 
-.vscode/*
-!.vscode/extensions.json
-!.vscode/launch.json
+.vscode/
 
 .classpath
 

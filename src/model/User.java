@@ -33,4 +33,9 @@ public class User extends Person {
   public void displayInfo() {
     System.out.println("ID: " + id + ", Name: " + firstName + " " + lastName + ", Email: " + email);
   }
+
+  // For file saving
+  public String toFileString() {
+    return id + "," + firstName + "," + lastName + "," + email;
+  }
 }

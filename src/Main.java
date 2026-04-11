@@ -35,7 +35,11 @@ public class Main {
             case 1:
               System.out.print("Enter ID: ");
               int id = sc.nextInt();
-              sc.nextLine();
+
+              if (manager.isDuplicateId(id)) {
+                System.out.println("❌ ID already exists! Try again.");
+                return;
+              }
 
               System.out.print("Enter First Name: ");
               String fname = sc.nextLine();
@@ -45,6 +49,11 @@ public class Main {
 
               System.out.print("Enter Email: ");
               String email = sc.nextLine();
+
+              if (manager.isDuplicateEmail(email)) {
+                System.out.println("❌ Email already exists! Try again.");
+                return;
+              }
 
               manager.addUser(new User(id, fname, lname, email));
               break;
@@ -91,7 +100,7 @@ public class Main {
               break;
 
             case 7:
-              FileHandler.saveUsers("users.txt", manager.getUsers());
+              FileHandler.saveUsers("data/users.txt", manager.getUsers());
               System.out.println("Saved. Exiting...");
               return;
           }

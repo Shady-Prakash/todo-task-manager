@@ -8,19 +8,50 @@ public class TaskManager {
   private ArrayList<User> users = new ArrayList<>();
   private ArrayList<Task> tasks = new ArrayList<>();
 
-  // CREATE
-  public void addUser(User user) {
-    users.add(user);
+  // Check by ID: Duplicate Check Methods
+  public boolean isDuplicateId(int id) {
+    for (User u : users) {
+      if (u.getId() == id) {
+        return true;
+      }
+    }
+    return false;
   }
 
-  // READ
+  // Check By Email: Duplicate Check Methods
+  public boolean isDuplicateEmail(String email) {
+    for (User u : users) {
+      if (u.getEmail().equalsIgnoreCase(email)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  // Create
+  public void addUser(User user) {
+    if (isDuplicateId(user.getId())) {
+      System.out.println("❌ Duplicate ID! User already exists.");
+      return;
+    }
+
+    if (isDuplicateEmail(user.getEmail())) {
+      System.out.println("❌ Duplicate Email! User already exists.");
+      return;
+    }
+
+    users.add(user);
+    System.out.println("✅ User added successfully!");
+  }
+
+  // Read
   public void viewUsers() {
     System.out.println("\n--------------------------------------------------");
-    System.out.printf("%-5s %-15s %-15s %-25s\n", "ID", "First Name", "Last Name", "Email");
+    System.out.printf("%-5s %-15s %-25s\n", "ID", "Name", "Email");
     System.out.println("--------------------------------------------------");
 
     for (User u : users) {
-      System.out.printf("%-5d %-15s %-15s %-25s\n",
+      System.out.printf("%-5d %-15s %-25s\n",
           u.getId(),
           u.getName(),
           u.getEmail());
@@ -37,7 +68,7 @@ public class TaskManager {
     return null;
   }
 
-  // UPDATE
+  // Update
   public void updateUser(int id, String firstName, String lastName, String email) {
     User u = findUserById(id);
     if (u != null) {
@@ -48,12 +79,12 @@ public class TaskManager {
     }
   }
 
-  // DELETE
+  // Delete
   public void deleteUser(int id) {
     users.removeIf(u -> u.getId() == id);
   }
 
-  // TASK MANAGEMENT
+  // Task Management
   public void addTask(Task task) {
     tasks.add(task);
   }
