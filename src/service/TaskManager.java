@@ -1,14 +1,19 @@
 package service;
 
-import java.util.*;
 import model.User;
 import model.Task;
+import java.util.*;
 
 public class TaskManager {
   private ArrayList<User> users = new ArrayList<>();
   private ArrayList<Task> tasks = new ArrayList<>();
 
-  // Check by ID: Duplicate Check Methods
+  public ArrayList<User> getUsers() {
+    return users;
+  }
+
+  // ===== USERS =====
+  // Check duplicate userID
   public boolean isDuplicateId(int id) {
     for (User u : users) {
       if (u.getId() == id) {
@@ -18,7 +23,7 @@ public class TaskManager {
     return false;
   }
 
-  // Check By Email: Duplicate Check Methods
+  // Check duplicate email
   public boolean isDuplicateEmail(String email) {
     for (User u : users) {
       if (u.getEmail().equalsIgnoreCase(email)) {
@@ -28,7 +33,7 @@ public class TaskManager {
     return false;
   }
 
-  // Create
+  // Create an user
   public void addUser(User user) {
     if (isDuplicateId(user.getId())) {
       System.out.println("❌ Duplicate ID! User already exists.");
@@ -44,7 +49,7 @@ public class TaskManager {
     System.out.println("✅ User added successfully!");
   }
 
-  // Read
+  // Read user list
   public void viewUsers() {
     System.out.println("\n--------------------------------------------------");
     System.out.printf("%-5s %-15s %-25s\n", "ID", "Name", "Email");
@@ -60,6 +65,7 @@ public class TaskManager {
     System.out.println("--------------------------------------------------");
   }
 
+  // Find user by userID
   public User findUserById(int id) {
     for (User u : users) {
       if (u.getId() == id)
@@ -68,7 +74,23 @@ public class TaskManager {
     return null;
   }
 
-  // Update
+  // list users dropdown
+  public void displayUsersList() {
+    System.out.println("\n--- Select User ---");
+    for (int i = 0; i < users.size(); i++) {
+      User u = users.get(i);
+      System.out.println((i + 1) + ". " + u.getName());
+    }
+  }
+
+  // find user by index
+  public User getUserByIndex(int index) {
+    if (index >= 0 && index < users.size())
+      return users.get(index);
+    return null;
+  }
+
+  // Update an user
   public void updateUser(int id, String firstName, String lastName, String email) {
     User u = findUserById(id);
     if (u != null) {
@@ -79,26 +101,60 @@ public class TaskManager {
     }
   }
 
-  // Delete
+  // Delete an user
   public void deleteUser(int id) {
     users.removeIf(u -> u.getId() == id);
   }
 
-  // Task Management
-  public void addTask(Task task) {
+  // ===== TASKS =====
+  public void assignTask(Task task) {
     tasks.add(task);
+    System.out.println("✅ Task assigned!");
   }
 
-  public void evaluateTasks() {
+  public void updateTaskStatus(int taskId, String status) {
     for (Task t : tasks) {
-      if (t != null) {
-        System.out.println("Evaluating Task...");
+      if (t.getTaskId() == taskId) {
+        t.setStatus(status);
+        System.out.println("✅ Status updated!");
+        return;
+      }
+    }
+    System.out.println("❌ Task not found!");
+  }
+
+  public void viewTasksByUser(String name) {
+    System.out.println("\n--- Tasks for " + name + " ---");
+
+    System.out.printf("%-5s %-20s %-12s %-10s %-20s %-20s\n",
+        "Task ID", "Description", "Status", "Priority", "Assigned By", "Assigned To");
+
+    for (Task t : tasks) {
+      if (t.getAssignedTo().equalsIgnoreCase(name)) {
         t.display();
       }
     }
   }
 
-  public ArrayList<User> getUsers() {
-    return users;
+  public void displayBoard() {
+    System.out.println("\n=========== TASK BOARD ===========");
+
+    printByStatus("TODO");
+    printByStatus("IN_PROGRESS");
+    printByStatus("PENDING");
+    printByStatus("COMPLETED");
+  }
+
+  private void printByStatus(String status) {
+    System.out.println("\n--- " + status + " ---");
+
+    System.out.printf("%-5s %-20s %-12s %-10s %-20s %-20s\n",
+        "ID", "Description", "Status", "Priority", "Assigned By", "Assigned To");
+
+    for (Task t : tasks) {
+      if (t.getStatus().equals(status)) {
+        t.display();
+      }
+    }
   }
 }
