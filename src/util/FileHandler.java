@@ -12,7 +12,7 @@ public class FileHandler {
         pw.println(u.toFileString());
       }
     } catch (IOException e) {
-      System.out.println("Error writing file: " + e.getMessage());
+      System.out.println("Error saving users!" + e.getMessage());
     }
   }
 
@@ -22,7 +22,7 @@ public class FileHandler {
     try (Scanner sc = new Scanner(new File(filename))) {
       while (sc.hasNextLine()) {
         String[] data = sc.nextLine().split(",");
-        if (data.length == 4) {
+        if (data.length == 6) {
           int id = Integer.parseInt(data[0]);
           String email = data[3];
 
@@ -36,7 +36,7 @@ public class FileHandler {
           }
 
           if (!exists) {
-            users.add(new User(id, data[1], data[2], email));
+            users.add(new User(id, data[1], data[2], email, data[4], data[5]));
           }
         }
       }

@@ -3,7 +3,7 @@ package model;
 public class Task {
   private int taskId;
   private String description;
-  private String status; // TODO, IN PROGRESS, PENDING, COMPLETED
+  private String status;
   private String priority; // HIGH, MEDIUM, LOW
   private String assignedBy;
   private String assignedTo;

@@ -12,6 +12,22 @@ public class TaskManager {
     return users;
   }
 
+  // ===== AUTH =====
+  public void register(User user) {
+    users.add(user);
+    System.out.println("✅ Registered!");
+  }
+
+  public User login(String username, String password) {
+    for (User u : users) {
+      if (u.getUsername().equals(username) &&
+          u.getPassword().equals(password)) {
+        return u;
+      }
+    }
+    return null;
+  }
+
   // ===== USERS =====
   // Check duplicate userID
   public boolean isDuplicateId(int id) {
@@ -33,6 +49,11 @@ public class TaskManager {
     return false;
   }
 
+  // Check duplicate username
+  public boolean isDuplicateUsername(String username) {
+    return users.stream().anyMatch(u -> u.getUsername().equals(username));
+  }
+
   // Create an user
   public void addUser(User user) {
     if (isDuplicateId(user.getId())) {
@@ -52,7 +73,7 @@ public class TaskManager {
   // Read user list
   public void viewUsers() {
     System.out.println("\n--------------------------------------------------");
-    System.out.printf("%-5s %-15s %-25s\n", "ID", "Name", "Email");
+    System.out.printf("%-5s %-15s %-25s\n", "UserID", "Name", "Email");
     System.out.println("--------------------------------------------------");
 
     for (User u : users) {
@@ -91,30 +112,53 @@ public class TaskManager {
   }
 
   // Update an user
-  public void updateUser(int id, String firstName, String lastName, String email) {
-    User u = findUserById(id);
-    if (u != null) {
-      u.setName(firstName, lastName);
-      u.setEmail(email);
-    } else {
-      System.out.println("User not found");
+  public boolean updateUser(int id, String fn, String ln, String email, String username, String password) {
+    for (User u : users) {
+      if (u.getId() == id) {
+        u.setName(fn, ln);
+        u.setEmail(email);
+        u.setUsername(username);
+        u.setPassword(password);
+        System.out.println("✅ User updated!");
+        return true;
+      }
     }
+    System.out.println("❌ User not found!");
+    return false;
   }
 
   // Delete an user
-  public void deleteUser(int id) {
-    users.removeIf(u -> u.getId() == id);
+  public boolean deleteUser(int id) {
+    boolean removed = users.removeIf(u -> u.getId() == id);
+
+    if (removed) {
+      System.out.println("✅ User deleted!");
+    } else {
+      System.out.println("❌ User not found!");
+    }
+    return removed;
   }
 
   // ===== TASKS =====
+  public boolean isDuplicateTaskId(int taskId) {
+    return tasks.stream().anyMatch(t -> t.getTaskId() == taskId);
+  }
+
   public void assignTask(Task task) {
+    if (isDuplicateTaskId(task.getTaskId())) {
+      System.out.println("❌ Task ID already exists!");
+      return;
+    }
+
     tasks.add(task);
     System.out.println("✅ Task assigned!");
   }
 
-  public void updateTaskStatus(int taskId, String status) {
+  public void updateTaskStatus(int taskId, String status, String currentUser) {
     for (Task t : tasks) {
       if (t.getTaskId() == taskId) {
+
+        // Only assigned user can update
         t.setStatus(status);
         System.out.println("✅ Status updated!");
         return;
