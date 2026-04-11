@@ -4,11 +4,13 @@ A console-based **Task Manager application** built using Java that allows users 
 
 ---
 
+
 # 🚀 Getting Started
 
 Follow these steps to run the project on your system.
 
 ---
+
 
 ## 📋 Prerequisites
 
@@ -23,13 +25,17 @@ Check Java installation:
 ```
 java -version
 ```
+
+
 # 📥 Installation
+
 # Step 1: Clone Repository
 
 ```
 git clone https://github.com/your-username/todo-task-manager.git
 cd todo-task-manager
 ```
+
 
 # 📁 Project Structure
 
@@ -58,7 +64,9 @@ todo-task-manager/
 └── README.md
 ```
 
+
 # ⚙️ Dependency Management
+
 This project uses core Java only:
 
 No external libraries
@@ -67,14 +75,17 @@ Uses built-in packages:
 * `java.util.*`
 * `java.io.*`
 
+
 # 🛠️ Build & Run
-# Step 1: Compile
+
+### Step 1: Compile
 
 ```
 javac -d bin src/**/*.java
 ```
 
 # Step 2: Run
+
 ```
 java -cp bin Main
 ```
@@ -82,7 +93,8 @@ java -cp bin Main
 
 # 🧑‍💻 Usage Guide
 
-# Step 1: Launch Application
+
+### Step 1: Launch Application
 
 ```
 ===== TODO TASK MANAGER =====
@@ -95,7 +107,8 @@ java -cp bin Main
 7. Exit
 ```
 
-# Step 2: Add Users
+
+### Step 2: Add Users
 
 ```
 ID: 1
@@ -104,7 +117,8 @@ Last Name: Mahat
 Email: prakash@email.com
 ```
 
-# Step 3: Assign Task
+
+### Step 3: Assign Task
 
 * Enter Task ID and Description
 * Select Priority:
@@ -116,18 +130,24 @@ Email: prakash@email.com
   * Assigned By
   * Assigned To
 
-# Step 4: Update Task Status
+
+### Step 4: Update Task Status
+
 Available statuses:
 * TODO
 * IN_PROGRESS
 * PENDING
 * COMPLETED
 
-# Step 5: View Tasks by User
+
+### Step 5: View Tasks by User
+
 * Enter full name
 * Displays tasks assigned to that user
 
-# Step 6: View Task Board
+
+### Step 6: View Task Board
+
 ```
 =========== TASK BOARD ===========
 
@@ -144,17 +164,22 @@ ID    Description         Status       Priority   Assigned By         Assigned T
 ...
 ```
 
-# Step 7: Save & Exit
+
+### Step 7: Save & Exit
+
 * Select option 7
 * Data is saved automatically to:
 `data/users.txt`
 
 
 # 📌 Data Format
+
 ### users.txt
 `id,firstName,lastName,email`
 
+
 # 🧠 Concepts Used
+
 * Object-Oriented Programming (OOP)
 * Inheritance & Abstraction
 * Java Collections (ArrayList)
@@ -162,7 +187,9 @@ ID    Description         Status       Priority   Assigned By         Assigned T
 * Exception Handling
 * CLI-based UI Design
 
+
 # Features
+
 * User Management (Add / View)
 * Task assignment between users
 * Dropdown-style user selection
@@ -170,5 +197,7 @@ ID    Description         Status       Priority   Assigned By         Assigned T
 * Priority-based tasks
 * Kanban-style task board
 
+
 # 👨‍💻 Author
+
 Prakash Mahat
