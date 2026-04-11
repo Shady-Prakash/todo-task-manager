@@ -29,7 +29,7 @@ java -version
 
 # 📥 Installation
 
-# Step 1: Clone Repository
+## Step 1: Clone Repository
 
 ```
 git clone https://github.com/your-username/todo-task-manager.git
@@ -78,7 +78,7 @@ Uses built-in packages:
 
 # 🛠️ Build & Run
 
-### Step 1: Compile
+## Step 1: Compile
 
 ```
 javac -d bin src/**/*.java
@@ -94,7 +94,7 @@ java -cp bin Main
 # 🧑‍💻 Usage Guide
 
 
-### Step 1: Launch Application
+## Step 1: Launch Application
 
 ```
 ===== TODO TASK MANAGER =====
@@ -108,7 +108,7 @@ java -cp bin Main
 ```
 
 
-### Step 2: Add Users
+## Step 2: Add Users
 
 ```
 ID: 1
@@ -118,7 +118,7 @@ Email: prakash@email.com
 ```
 
 
-### Step 3: Assign Task
+## Step 3: Assign Task
 
 * Enter Task ID and Description
 * Select Priority:
@@ -131,7 +131,7 @@ Email: prakash@email.com
   * Assigned To
 
 
-### Step 4: Update Task Status
+## Step 4: Update Task Status
 
 Available statuses:
 * TODO
@@ -140,13 +140,13 @@ Available statuses:
 * COMPLETED
 
 
-### Step 5: View Tasks by User
+## Step 5: View Tasks by User
 
 * Enter full name
 * Displays tasks assigned to that user
 
 
-### Step 6: View Task Board
+## Step 6: View Task Board
 
 ```
 =========== TASK BOARD ===========
@@ -165,7 +165,7 @@ ID    Description         Status       Priority   Assigned By         Assigned T
 ```
 
 
-### Step 7: Save & Exit
+## Step 7: Save & Exit
 
 * Select option 7
 * Data is saved automatically to:
@@ -174,7 +174,7 @@ ID    Description         Status       Priority   Assigned By         Assigned T
 
 # 📌 Data Format
 
-### users.txt
+## users.txt
 `id,firstName,lastName,email`
 
 
