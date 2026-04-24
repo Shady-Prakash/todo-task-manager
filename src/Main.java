@@ -3,6 +3,7 @@ import java.util.*;
 import service.TaskManager;
 import util.FileHandler;
 import model.User;
+import model.Priority;
 import model.Task;
 
 public class Main {
@@ -86,7 +87,8 @@ public class Main {
         System.out.println("5. My Tasks");
         System.out.println("6. Update Task");
         System.out.println("7. Board");
-        System.out.println("8. Logout");
+        System.out.println("8. Update Priority");
+        System.out.println("9. Logout");
         System.out.print("Choice: ");
 
         int choice = Integer.parseInt(sc.nextLine());
@@ -147,11 +149,11 @@ public class Main {
               String desc = sc.nextLine();
 
               System.out.println("1.HIGH 2.MEDIUM 3.LOW");
-              String pr = switch (Integer.parseInt(sc.nextLine())) {
-                case 1 -> "HIGH";
-                case 2 -> "MEDIUM";
-                case 3 -> "LOW";
-                default -> "LOW";
+              Priority pr = switch (Integer.parseInt(sc.nextLine())) {
+                case 1 -> Priority.HIGH;
+                case 2 -> Priority.MEDIUM;
+                case 3 -> Priority.LOW;
+                default -> Priority.LOW;
               };
 
               manager.displayUsersList();
@@ -208,6 +210,26 @@ public class Main {
               break;
 
             case 8:
+              System.out.println("\n--- YOUR TASKS ---");
+              manager.viewTasksByUser(currentUser.getName());
+
+              System.out.print("Enter Task ID: ");
+              int pid = Integer.parseInt(sc.nextLine());
+
+              System.out.println("1.HIGH 2.MEDIUM 3.LOW");
+              int pChoice = Integer.parseInt(sc.nextLine());
+
+              Priority newPriority = switch (pChoice) {
+                case 1 -> Priority.HIGH;
+                case 2 -> Priority.MEDIUM;
+                case 3 -> Priority.LOW;
+                default -> Priority.LOW;
+              };
+
+              manager.updateTaskPriority(pid, newPriority, currentUser.getName());
+              break;
+
+            case 9:
               currentUser = null;
               System.out.println("👋 Logged out!");
               break;

@@ -1,6 +1,7 @@
 package service;
 
 import model.User;
+import model.Priority;
 import model.Task;
 import java.util.*;
 
@@ -178,6 +179,24 @@ public class TaskManager {
         t.display();
       }
     }
+  }
+
+  public void updateTaskPriority(int taskId, Priority newPriority, String currentUser) {
+    for (Task t : tasks) {
+      if (t.getTaskId() == taskId) {
+
+        // OPTIONAL: restrict to assigned user
+        if (!t.getAssignedTo().equalsIgnoreCase(currentUser)) {
+          System.out.println("❌ You are not assigned to this task!");
+          return;
+        }
+
+        t.setPriority(newPriority);
+        System.out.println("✅ Priority updated!");
+        return;
+      }
+    }
+    System.out.println("❌ Task not found!");
   }
 
   public void displayBoard() {

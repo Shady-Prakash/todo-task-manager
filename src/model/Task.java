@@ -4,11 +4,11 @@ public class Task {
   private int taskId;
   private String description;
   private String status;
-  private String priority; // HIGH, MEDIUM, LOW
+  private Priority priority;
   private String assignedBy;
   private String assignedTo;
 
-  public Task(int taskId, String description, String priority,
+  public Task(int taskId, String description, Priority priority,
       String assignedBy, String assignedTo) {
     this.taskId = taskId;
     this.description = description;
@@ -26,6 +26,14 @@ public class Task {
     return status;
   }
 
+  public Priority getPriority() {
+    return priority;
+  }
+
+  public void setPriority(Priority priority) {
+    this.priority = priority;
+  }
+
   public String getAssignedTo() {
     return assignedTo;
   }
@@ -36,6 +44,6 @@ public class Task {
 
   public void display() {
     System.out.printf("%-5d %-20s %-12s %-10s %-20s %-20s\n",
-        taskId, description, status, priority, assignedBy, assignedTo);
+        taskId, description, status, priority.name(), assignedBy, assignedTo);
   }
 }
